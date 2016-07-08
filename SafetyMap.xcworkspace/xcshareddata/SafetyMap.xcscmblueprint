@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4903328B639FF94B19DEEDDA6BCC5FFFF4870310",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "422CD09435EC7F83D5D237D4B7AAF0ED9AB25A8F" : 0,
+    "4903328B639FF94B19DEEDDA6BCC5FFFF4870310" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D093A49D-0A0A-481D-A152-D1D00DC92B6C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "422CD09435EC7F83D5D237D4B7AAF0ED9AB25A8F" : "SafetyGPS\/",
+    "4903328B639FF94B19DEEDDA6BCC5FFFF4870310" : "SafetyMap\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SafetyMap",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SafetyMap.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/danieljku\/SafetyGPS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "422CD09435EC7F83D5D237D4B7AAF0ED9AB25A8F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/danieljku\/SafetyMap.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4903328B639FF94B19DEEDDA6BCC5FFFF4870310"
+    }
+  ]
+}

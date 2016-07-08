@@ -13,6 +13,8 @@
 		123253481D303B6D00B406CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 123253471D303B6D00B406CA /* Assets.xcassets */; };
 		1232534B1D303B6D00B406CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 123253491D303B6D00B406CA /* LaunchScreen.storyboard */; };
 		123253531D303D5500B406CA /* CrimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123253521D303D5500B406CA /* CrimeData.swift */; };
+		123253591D30437E00B406CA /* CrimeDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123253581D30437E00B406CA /* CrimeDataTableViewController.swift */; };
+		1232535B1D30457500B406CA /* CrimeDataViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1232535A1D30457500B406CA /* CrimeDataViewCell.swift */; };
 		8C7A5F329FB162952D0A6347 /* Pods_SafetyMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BDD6087E7D2BEEE4CA5B5E /* Pods_SafetyMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		1232534A1D303B6D00B406CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1232534C1D303B6D00B406CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		123253521D303D5500B406CA /* CrimeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrimeData.swift; path = ../../SafetyGPS/SafetyGPS/CrimeData.swift; sourceTree = "<group>"; };
+		123253581D30437E00B406CA /* CrimeDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrimeDataTableViewController.swift; sourceTree = "<group>"; };
+		1232535A1D30457500B406CA /* CrimeDataViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrimeDataViewCell.swift; sourceTree = "<group>"; };
 		4400FD0A8436DFC0B2D015F1 /* Pods-SafetyMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafetyMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafetyMap/Pods-SafetyMap.debug.xcconfig"; sourceTree = "<group>"; };
 		B7BDD6087E7D2BEEE4CA5B5E /* Pods_SafetyMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SafetyMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48BF4139A832E923182E4D0 /* Pods-SafetyMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafetyMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafetyMap/Pods-SafetyMap.release.xcconfig"; sourceTree = "<group>"; };
@@ -63,15 +67,41 @@
 		1232533F1D303B6D00B406CA /* SafetyMap */ = {
 			isa = PBXGroup;
 			children = (
-				123253521D303D5500B406CA /* CrimeData.swift */,
+				1232535C1D3052A900B406CA /* Views */,
+				123253541D30432100B406CA /* Models */,
+				123253551D30432700B406CA /* Controllers */,
 				123253401D303B6D00B406CA /* AppDelegate.swift */,
-				123253421D303B6D00B406CA /* ViewController.swift */,
 				123253441D303B6D00B406CA /* Main.storyboard */,
 				123253471D303B6D00B406CA /* Assets.xcassets */,
 				123253491D303B6D00B406CA /* LaunchScreen.storyboard */,
 				1232534C1D303B6D00B406CA /* Info.plist */,
 			);
 			path = SafetyMap;
+			sourceTree = "<group>";
+		};
+		123253541D30432100B406CA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				123253521D303D5500B406CA /* CrimeData.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		123253551D30432700B406CA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				123253421D303B6D00B406CA /* ViewController.swift */,
+				123253581D30437E00B406CA /* CrimeDataTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1232535C1D3052A900B406CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1232535A1D30457500B406CA /* CrimeDataViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		15FAFEE5B6B685E27B524C17 /* Frameworks */ = {
@@ -214,7 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				123253431D303B6D00B406CA /* ViewController.swift in Sources */,
+				1232535B1D30457500B406CA /* CrimeDataViewCell.swift in Sources */,
 				123253531D303D5500B406CA /* CrimeData.swift in Sources */,
+				123253591D30437E00B406CA /* CrimeDataTableViewController.swift in Sources */,
 				123253411D303B6D00B406CA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

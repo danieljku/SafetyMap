@@ -18,31 +18,76 @@ import AlamofireNetworkActivityIndicator
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
-    var crimeDataArr: [CrimeData] = []
+    var crimeAroundData: [CrimeData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        super.viewDidLoad()
         mapView.showsUserLocation = true
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
+
+       // if CLLocationManager.locationServicesEnabled() {
+          //  locationManager.delegate = self
+          //  locationManager.desiredAccuracy = kCLLocationAccuracyBest
+           // locationManager.requestWhenInUseAuthorization()
+           // locationManager.startUpdatingLocation()
+       // }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation = locations.last! as CLLocation
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.05, 0.05)
-        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(mapView.userLocation.coordinate.latitude, mapView.userLocation.coordinate.longitude)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(37.784693, -122.413031)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         mapView.setRegion(region, animated: true)
         
+        showCrimeData(location)
+    }
+    
+    func showCrimeData(coordinate:CLLocationCoordinate2D) {
+        
+        getCrimeData { (crimeDataArr) in
+            
+            var index = 0
+            var crimeAroundUser = 0
+            
+            while index < crimeDataArr.count{
+                let userPosition:CLLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                let crimeLocation:CLLocation = CLLocation(latitude: crimeDataArr[index].latitude, longitude: crimeDataArr[index].longitude)
+                
+                let meters:CLLocationDistance = userPosition.distanceFromLocation(crimeLocation)
+                if meters <= 150 {
+                    self.crimeAroundData.append(crimeDataArr[index])
+                    crimeAroundUser += 1
+                }
+                
+                index += 1
+            }
+            if crimeAroundUser > 12{
+                //red
+                self.mapView.tintColor = UIColor.redColor()
+                print(crimeAroundUser)
+            }else if crimeAroundUser <= 12 && crimeAroundUser > 5{
+                //yellow
+                self.mapView.tintColor = UIColor.yellowColor()
+                print(crimeAroundUser)
+            }else if crimeAroundUser <= 5 && crimeAroundUser > 0{
+                //green
+                self.mapView.tintColor = UIColor.greenColor()
+                print(crimeAroundUser)
+            }
+
+
+        }
+    }
+    
+    
+    func getCrimeData(completionHandler:([CrimeData]) -> Void) {
+        
         let apiURL = "https://data.sfgov.org/resource/9v2m-8wqu.json"
+        
+        var crimeDataArr:[CrimeData] = [CrimeData]()
+        
         Alamofire.request(.GET, apiURL).validate().responseJSON() { response in
             switch response.result {
             case .Success:
@@ -53,47 +98,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     // Store the crime data into the array
                     while (i < json.count){
                         let crimeData = CrimeData(json: json[i])
-                        self.crimeDataArr.append(crimeData)
+                        crimeDataArr.append(crimeData)
                         i += 1
                     }
                     
+                    completionHandler(crimeDataArr)
                 }
             case .Failure(let error):
                 print(error)
             }
-            var j = 0
-            var crimeAroundUser = 0
-            while j < self.crimeDataArr.count{
-                let userPosition:CLLocation = CLLocation(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-                let crimeLocation:CLLocation = CLLocation(latitude: self.crimeDataArr[j].latitude, longitude: self.crimeDataArr[j].longitude)
-                
-                let meters:CLLocationDistance = userPosition.distanceFromLocation(crimeLocation)
-                if meters <= 50 {
-                    crimeAroundUser += 1
-                }
-                
-                j += 1
-            }
-            if crimeAroundUser > 15{
-                //red
-                self.mapView.tintColor = UIColor.redColor()
-                print(crimeAroundUser)
-            }else if crimeAroundUser <= 15 && crimeAroundUser > 5{
-                //yellow
-                self.mapView.tintColor = UIColor.yellowColor()
-                print(crimeAroundUser)
-            }else if crimeAroundUser <= 5 && crimeAroundUser > 0{
-                //green
-                self.mapView.tintColor = UIColor.greenColor()
-                print(crimeAroundUser)
-            }
-
+            
         }
-
 
     }
     
-
+    /*func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation = locations.last! as CLLocation
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.05, 0.05)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(mapView.userLocation.coordinate.latitude, mapView.userLocation.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        mapView.setRegion(region, animated: true)
+        
+           }
+    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let crimeDataTableViewController = segue.destinationViewController as! CrimeDataTableViewController
+        if segue.identifier == "CrimeData"{
+            crimeDataTableViewController.crimeDataList = crimeAroundData
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
