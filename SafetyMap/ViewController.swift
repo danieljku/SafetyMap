@@ -65,16 +65,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
             if crimeAroundUser > 12{
                 //red
+                self.mapView.selectAnnotation(self.mapView.userLocation, animated: true)
                 self.mapView.tintColor = UIColor.redColor()
+                self.mapView.userLocation.title = "YOU'RE IN A DANGER ZONE!!!"
                 print(crimeAroundUser)
             }else if crimeAroundUser <= 12 && crimeAroundUser > 5{
                 //yellow
+                self.mapView.selectAnnotation(self.mapView.userLocation, animated: true)
                 self.mapView.tintColor = UIColor.yellowColor()
+                self.mapView.userLocation.title = "YOU'RE IN A MODERATE DANGER ZONE!"
                 print(crimeAroundUser)
             }else if crimeAroundUser <= 5 && crimeAroundUser > 0{
                 //green
+                self.mapView.selectAnnotation(self.mapView.userLocation, animated: true)
                 self.mapView.tintColor = UIColor.greenColor()
+                self.mapView.userLocation.title = "YOU'RE IN A LIGHT DANGER ZONE"
                 print(crimeAroundUser)
+            }else{
+                self.mapView.selectAnnotation(self.mapView.userLocation, animated: true)
+                self.mapView.userLocation.title = "YOU'RE SAFE!"
             }
 
 
